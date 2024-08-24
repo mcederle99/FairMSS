@@ -42,22 +42,28 @@ def generate_bike_distribution(g, total_bikes, distribution_type='wg'):
     remote_nodes = [node for node in nodes if g.nodes[node]['station'] == 2]
 
     if distribution_type == 'wg':
-        mu_central = total_bikes / 2 / len(central_nodes)
-        mu_peripheral = total_bikes / 2 * 0.7 / len(peripheral_nodes)
-        mu_remote = total_bikes / 2 * 0.3 / len(remote_nodes)
+        mu_central = 1000 / 2 / 10
+        mu_peripheral = 1000 / 2 * 0.6 / 30
+        mu_remote = 1000 / 2 * 0.4 / 60
 
         for node in central_nodes:
             g.nodes[node]['bikes'] = math.ceil(np.random.normal(mu_central, 1))
             if g.nodes[node]['bikes'] < 0:
                 g.nodes[node]['bikes'] = 0
+            if g.nodes[node]['bikes'] > 75:
+                g.nodes[node]['bikes'] = 75
         for node in peripheral_nodes:
             g.nodes[node]['bikes'] = math.ceil(np.random.normal(mu_peripheral, 1))
             if g.nodes[node]['bikes'] < 0:
                 g.nodes[node]['bikes'] = 0
+            if g.nodes[node]['bikes'] > 20:
+                g.nodes[node]['bikes'] = 20
         for node in remote_nodes:
             g.nodes[node]['bikes'] = math.ceil(np.random.normal(mu_remote, 1))
             if g.nodes[node]['bikes'] < 0:
                 g.nodes[node]['bikes'] = 0
+            if g.nodes[node]['bikes'] > 15:
+                g.nodes[node]['bikes'] = 15
 
     elif distribution_type == 'u':
         bikes_per_node = total_bikes // len(nodes)

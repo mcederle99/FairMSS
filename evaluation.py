@@ -4,11 +4,20 @@ from network import generate_network, generate_bike_distribution
 from demand import generate_global_demand
 import numpy as np
 import random
-from tqdm import tqdm
+import pickle
+import inequalipy as ineq
+import argparse
 
 
-# TRAINING PHASE
-temperature = 0
+parser = argparse.ArgumentParser()
+parser.add_argument("--beta", default=0, type=float)
+args = parser.parse_args()
+
+np.random.seed(0 + 100)
+random.seed(0 + 100)
+
+beta = args.beta / 10
+gamma = 5
 
 num_central = 10
 num_peripheral = 30
@@ -26,40 +35,14 @@ all_days_demand_vectors, transformed_demand_vectors = generate_global_demand(num
                                                                              time_slots)
 
 agent = RebalancingAgent()
+with open(f"q_tables/q_table_{args.beta / 10}.pkl", "rb") as file:
+    agent.q_table = pickle.load(file)
 
 num_stations = 100
-daily_returns = []
-daily_failures = []
 generate_bike_distribution(G, 1000, 'wg')
 np.random.seed(0)
 random.seed(0)
 
-env = FairEnv(G, transformed_demand_vectors, temperature)
-state = env.reset()
-
-for repeat in range(10):
-    for day in tqdm(range(num_days)):
-        ret = 0
-        fails = 0
-        for time in (0, 1):
-            actions = np.zeros(num_stations, dtype=np.int64)
-            for i in range(num_stations):
-                actions[i] = agent.decide_action(state[i])
-
-            next_state, reward, failures = env.step(actions)
-            ret += np.sum(reward)
-            fails += np.sum(failures)
-
-            for i in range(num_stations):
-                agent.update_q_table(state[i], actions[i], reward[i], next_state[i])
-
-            agent.update_epsilon()
-            state = next_state
-
-        daily_returns.append(ret)
-        daily_failures.append(fails)
-
-# EVALUATION PHASE
 daily_central_failures = []
 daily_per_failures = []
 daily_rem_failures = []
@@ -72,8 +55,7 @@ daily_global_rebalancing = []
 
 agent.set_epsilon(0.0)
 
-generate_bike_distribution(G, 1000, 'wg')
-eval_env = FairEnv(G, transformed_demand_vectors, temperature)
+eval_env = FairEnv(G, transformed_demand_vectors, beta, gamma)
 state = eval_env.reset()
 initial_bikes = 0
 for i in range(100):
@@ -98,7 +80,6 @@ for day in range(100):
             actions[i] = agent.decide_action(state[i])
 
         next_state, reward, failures = eval_env.step(actions)
-
         ret += np.sum(reward)
 
         central_fails += np.sum(failures[:10])
@@ -178,5 +159,10 @@ for i in range(100):
     b += G.nodes[i]['bikes']
 
 bike_increment = (b - initial_bikes) / initial_bikes * 100
+max_bike_increment = (2250 - initial_bikes) / initial_bikes * 100
 
 print(f'Percentage increase on the total number of bikes: {bike_increment:.2f} %')
+print(f'Maximum allowable percentage increase on the total number of bikes: {max_bike_increment:.2f} %')
+
+gini_coefficient = np.round(ineq.gini([failure_rate_central, failure_rate_rem]), 3)
+print(f'Gini coefficient: {gini_coefficient}')

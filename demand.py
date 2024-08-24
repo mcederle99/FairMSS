@@ -1,7 +1,6 @@
 from scipy.stats import skellam
 import numpy as np
 import random
-from tqdm import tqdm
 
 
 np.random.seed(0)
@@ -22,7 +21,7 @@ def generate_global_demand(num_central, num_peripheral, num_remote, num_days,
                            central_params, peripheral_params, remote_params, time_slots):
     all_days_demand_vectors = []
 
-    for _ in tqdm(range(num_days)):
+    for _ in range(num_days):
         central_demand_vectors = generate_daily_demand(num_central, central_params, time_slots)
         peripheral_demand_vectors = generate_daily_demand(num_peripheral, peripheral_params, time_slots)
         remote_demand_vectors = generate_daily_demand(num_remote, remote_params, time_slots)

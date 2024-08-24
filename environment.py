@@ -6,33 +6,15 @@ np.random.seed(0)
 
 class FairEnv:
 
-    def __init__(self, graph, demand_vectors, temperature):
+    def __init__(self, graph, demand_vectors, beta, gamma):
         self.G = graph
         self.demand_vectors = demand_vectors
         self.num_stations = len(list(self.G.nodes))
         self.hour = 0
         self.day = 0
         self.next_rebalancing_hour = 11
-        self.temperature = temperature
-
-    def action_space(self):
-        actions = [-30, -20, -10, 0, 5, 10, 20]
-
-        return np.random.choice(actions)
-
-    def observation_space(self):
-        state = []
-
-        n_bikes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
-        state.append(np.random.choice(n_bikes))
-
-        station_type = [0, 1, 2]  # equivalent to ['central', 'peripheral', 'remote']
-        state.append(np.random.choice(station_type))
-
-        time = [0, 1]  # equivalent to ['morning', 'evening']
-        state.append(np.random.choice(time))
-
-        return state
+        self.beta = beta
+        self.gamma = gamma
 
     def get_state(self):
         state = np.zeros((self.num_stations, 3), dtype=np.int64)
@@ -50,9 +32,16 @@ class FairEnv:
                         n_bikes = 0
                         failures[i] += 1
 
-                self.G.nodes[i]['bikes'] = n_bikes
+                if self.G.nodes[i]['station'] == 0 and n_bikes > 75:
+                    self.G.nodes[i]['bikes'] = 75
+                elif self.G.nodes[i]['station'] == 1 and n_bikes > 20:
+                    self.G.nodes[i]['bikes'] = 20
+                elif self.G.nodes[i]['station'] == 2 and n_bikes > 15:
+                    self.G.nodes[i]['bikes'] = 15
+                else:
+                    self.G.nodes[i]['bikes'] = n_bikes
 
-                state[i] = [n_bikes, self.G.nodes[i]['station'], time]
+                state[i] = [self.G.nodes[i]['bikes'], self.G.nodes[i]['station'], time]
 
             self.hour += 1
 
@@ -69,14 +58,20 @@ class FairEnv:
         rewards = np.zeros(self.num_stations)
 
         for i in range(self.num_stations):
-            if self.G.nodes[i]['station'] == 0:
-                beta = -self.temperature
-            elif self.G.nodes[i]['station'] == 2:
-                beta = self.temperature
+            if action[i] != 0:
+                rebalancing_penalty = 1
             else:
-                beta = 0
-
-            rewards[i] = - (1 + beta) * failures[i] - 0.5 * action[i]
+                rebalancing_penalty = 0
+            rewards[i] -= failures[i]
+            if self.G.nodes[i]['station'] == 0:
+                rewards[i] -= self.beta * (-1) * failures[i]
+                rewards[i] -= self.gamma * (1 - 0.6 - 0.3) * rebalancing_penalty
+            elif self.G.nodes[i]['station'] == 1:
+                rewards[i] -= self.beta * 0 * failures[i]
+                rewards[i] -= self.gamma * (1 - 0.6) * rebalancing_penalty
+            else:
+                rewards[i] -= self.beta * 1 * failures[i]
+                rewards[i] -= self.gamma * 1 * rebalancing_penalty
 
         return rewards
 
