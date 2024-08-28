@@ -4,6 +4,6 @@
 
 for ((i=0;i<=10;i+=1))
 do
-        python evaluation.py \
+        python evaluation_2.py \
         --beta $i
 done

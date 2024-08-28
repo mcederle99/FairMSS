@@ -1,7 +1,7 @@
 import numpy as np
 
 
-np.random.seed(0)
+# np.random.seed(0)
 
 
 class FairEnv:
@@ -32,12 +32,16 @@ class FairEnv:
                         n_bikes = 0
                         failures[i] += 1
 
-                if self.G.nodes[i]['station'] == 0 and n_bikes > 75:
-                    self.G.nodes[i]['bikes'] = 75
+                if self.G.nodes[i]['station'] == 0 and n_bikes > 15:
+                    self.G.nodes[i]['bikes'] = 15
                 elif self.G.nodes[i]['station'] == 1 and n_bikes > 20:
                     self.G.nodes[i]['bikes'] = 20
-                elif self.G.nodes[i]['station'] == 2 and n_bikes > 15:
-                    self.G.nodes[i]['bikes'] = 15
+                elif self.G.nodes[i]['station'] == 2 and n_bikes > 25:
+                    self.G.nodes[i]['bikes'] = 25
+                elif self.G.nodes[i]['station'] == 3 and n_bikes > 40:
+                    self.G.nodes[i]['bikes'] = 40
+                elif self.G.nodes[i]['station'] == 4 and n_bikes > 60:
+                    self.G.nodes[i]['bikes'] = 60
                 else:
                     self.G.nodes[i]['bikes'] = n_bikes
 
@@ -64,14 +68,20 @@ class FairEnv:
                 rebalancing_penalty = 0
             rewards[i] -= failures[i]
             if self.G.nodes[i]['station'] == 0:
-                rewards[i] -= self.beta * (-1) * failures[i]
-                rewards[i] -= self.gamma * (1 - 0.6 - 0.3) * rebalancing_penalty
-            elif self.G.nodes[i]['station'] == 1:
-                rewards[i] -= self.beta * 0 * failures[i]
-                rewards[i] -= self.gamma * (1 - 0.6) * rebalancing_penalty
-            else:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
+            elif self.G.nodes[i]['station'] == 1:
+                rewards[i] -= self.beta * 0.5 * failures[i]
+                rewards[i] -= self.gamma * 0.8 * rebalancing_penalty
+            elif self.G.nodes[i]['station'] == 2:
+                rewards[i] -= self.beta * 0 * failures[i]
+                rewards[i] -= self.gamma * 0.4 * rebalancing_penalty
+            elif self.G.nodes[i]['station'] == 3:
+                rewards[i] -= self.beta * (-0.5) * failures[i]
+                rewards[i] -= self.gamma * 0.3 * rebalancing_penalty
+            elif self.G.nodes[i]['station'] == 4:
+                rewards[i] -= self.beta * (-1) * failures[i]
+                rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
 
         return rewards
 

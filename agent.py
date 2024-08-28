@@ -1,54 +1,9 @@
 import random
 import numpy as np
+from av_actions import available_actions
 
 
-np.random.seed(0)
-
-
-def available_actions(state):
-    if state[1] == 0:
-        if state[0] < 5:
-            actions = [0, 5, 10, 20, 30]
-        elif state[0] < 10:
-            actions = [-5, 0, 5, 10, 20, 30]
-        elif state[0] < 20:
-            actions = [-10, -5, 0, 5, 10, 20, 30]
-        elif state[0] < 30:
-            actions = [-20, -10, -5, 0, 5, 10, 20, 30]
-        elif state[0] < 45:
-            actions = [-30, -20, -10, -5, 0, 5, 10, 20, 30]
-        elif state[0] < 55:
-            actions = [-30, -20, -10, -5, 0, 5, 10, 20]
-        elif state[0] < 65:
-            actions = [-30, -20, -10, -5, 0, 5, 10]
-        elif state[0] < 70:
-            actions = [-30, -20, -10, -5, 0, 5]
-        else:
-            actions = [-30, -20, -10, -5, 0]
-    elif state[1] == 1:
-        if state[0] == 0:
-            actions = [0, 5, 10, 20]
-        elif state[0] < 5:
-            actions = [0, 5, 10]
-        elif state[0] < 10:
-            actions = [-5, 0, 5, 10]
-        elif state[0] < 15:
-            actions = [-10, -5, 0, 5]
-        elif state[0] < 20:
-            actions = [-10, -5, 0]
-        else:
-            actions = [-20, -10, -5, 0]
-    else:
-        if state[0] == 0:
-            actions = [0, 5, 10]
-        if state[0] < 5:
-            actions = [0, 5, 10]
-        elif state[0] < 10:
-            actions = [-5, 0, 5]
-        else:
-            actions = [-10, -5, 0]
-
-    return actions
+# np.random.seed(0)
 
 
 class RebalancingAgent:
@@ -64,20 +19,17 @@ class RebalancingAgent:
         self.epsilon = value
 
     def get_q_value(self, state, action):
-        # binned_state = get_state_bin(state)
         key = ((state[0], state[1], state[2]), action)
 
         return self.q_table.get(key, 0)
 
     def update_q_table(self, state, action, reward, next_state):
-        # binned_state = get_state_bin(state)
-        # binned_next_state = get_state_bin(next_state)
         actions = available_actions(next_state)
 
         max_q_next = max(self.get_q_value(next_state, a) for a in actions)
         q_current = self.get_q_value(state, action)
 
-        q_new = np.round(q_current + self.learning_rate * (reward + self.discount_factor * max_q_next - q_current), 1)
+        q_new = q_current + self.learning_rate * (reward + self.discount_factor * max_q_next - q_current)
         self.q_table[((state[0], state[1], state[2]), action)] = q_new
 
     def print_q_table(self):
@@ -86,7 +38,6 @@ class RebalancingAgent:
             print(f"State-Action: {key[0]} {v}, Q-Value: {value}")
 
     def decide_action(self, state):
-        # binned_state = get_state_bin(state)
         actions = available_actions(state)
 
         if random.random() < self.epsilon:
