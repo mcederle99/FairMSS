@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Script to reproduce results
-for ((s=4;s<7;s+=1))
+for ((s=0;s<1;s+=1))
 do
-  for ((c=3;c<=3;c+=1))
+  for ((c=2;c<=2;c+=1))
   do
-    for ((i=0;i<=10;i+=1))
+    for ((i=4;i<=7;i+=1))
     do
             python training.py \
             --beta $i \

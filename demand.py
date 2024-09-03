@@ -3,10 +3,6 @@ import numpy as np
 import random
 
 
-# np.random.seed(0)
-# random.seed(0)
-
-
 # Function to generate daily demand for a station type
 def generate_daily_demand(station_count, demand_params, time_slots):
     demand_vectors = np.zeros((station_count, 24), dtype=np.int64)

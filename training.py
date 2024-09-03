@@ -1,6 +1,5 @@
-from environment import FairEnv
 from agent import RebalancingAgent
-from network import generate_network, generate_bike_distribution
+from network import generate_network
 from demand import generate_global_demand
 import numpy as np
 import random
@@ -17,42 +16,37 @@ beta = args.beta / 10
 gamma = 20
 
 num_days = 1000
-# time_slots = [(0, 4), (4, 7), (7, 10), (10, 11), (11, 13), (13, 14), (14, 17), (17, 20), (20, 24)]
-# demand_params_0 = [(0.1, 1), (0.1, 1), (0.1, 2.1), (0.1, 2), (1, 1), (2, 2), (1, 1), (1, 1), (1, 1)]
-demand_params_1 = [(1, 1), (1, 1), (1, 3), (1, 3), (1, 1), (1, 1), (3, 1), (3, 1), (1, 1)]
-# demand_params_2 = [(2, 1), (1, 1), (3, 3), (2, 1.5), (1, 1), (2, 1), (3, 2), (2, 1), (1, 1)]
-demand_params_3 = [(2, 2), (2, 2), (8, 1), (5, 1), (2, 2), (1, 4), (1, 7), (1, 5), (2, 2)]
-# demand_params_4 = [(3.9, 1.6), (4.4, 2), (13, 1), (11.9, 2), (2, 2), (5, 5), (4, 10), (6.8, 10), (2, 2)]
-
-# demand_params_0 = [(1, 1), (1, 1), (0.5, 2), (0.5, 2), (1, 1), (1, 1.5), (2, 1), (2, 1), (1, 1)]
-# demand_params_2 = [(2, 2), (2, 2), (2, 1.5), (1.5, 1), (2, 2), (1, 2), (3, 4), (2, 3), (2, 2)]
-# demand_params_4 = [(2, 2), (2, 2), (16.5, 9), (15, 7.5), (2, 2), (8, 2), (4, 10), (1, 4), (2, 2)]
-
 time_slots =\
     [(0, 12), (12, 24)]
-demand_params_0 =\
-    [(0.3, 2), (1.5, 0.3)]
-demand_params_2 =\
-    [(3.3, 1.5), (1.5, 3.3)]
-demand_params_4 =\
-    [(13.8, 9), (12, 13.8)]
 
 if args.categories == 2:
+    from environment_2 import FairEnv
+    demand_params_0 = \
+        [(0.3, 2), (1.5, 0.3)]
+    demand_params_4 = \
+        [(13.8, 3.6), (6.6, 13.8)]
     demand_params = [demand_params_0, demand_params_4]
     node_list = [60, 10]
-    total_bikes = 700
+
 elif args.categories == 3:
+    from environment_3 import FairEnv
+    demand_params_0 = \
+        [(0.3, 2), (1.5, 0.3)]
+    demand_params_2 = \
+        [(3.3, 1.5), (1.5, 3.3)]
+    demand_params_4 = \
+        [(13.8, 9), (12, 13.8)]
     demand_params = [demand_params_0, demand_params_2, demand_params_4]
     node_list = [60, 30, 10]
-    # total_bikes = 1000
-elif args.categories == 4:
-    demand_params = [demand_params_0, demand_params_1, demand_params_3, demand_params_4]
-    node_list = [60, 45, 20, 10]
-    total_bikes = 1400
-elif args.categories == 5:
-    demand_params = [demand_params_0, demand_params_1, demand_params_2, demand_params_3, demand_params_4]
-    node_list = [60, 45, 30, 20, 10]
-    total_bikes = 1700
+
+# elif args.categories == 4:
+#     demand_params = [demand_params_0, demand_params_1, demand_params_3, demand_params_4]
+#     node_list = [60, 45, 20, 10]
+
+# elif args.categories == 5:
+#     demand_params = [demand_params_0, demand_params_1, demand_params_2, demand_params_3, demand_params_4]
+#     node_list = [60, 45, 30, 20, 10]
+
 else:
     raise ValueError("Wrong number of categories. Select among [2, 3, 4, 5]")
 
@@ -61,15 +55,14 @@ all_days_demand_vectors, transformed_demand_vectors = generate_global_demand(nod
                                                                              demand_params, time_slots)
 
 agent_0 = RebalancingAgent(0)
-agent_1 = RebalancingAgent(1)
+# agent_1 = RebalancingAgent(1)
 agent_2 = RebalancingAgent(2)
-agent_3 = RebalancingAgent(3)
+# agent_3 = RebalancingAgent(3)
 agent_4 = RebalancingAgent(4)
 
 num_stations = np.sum(node_list)
 daily_returns = []
 daily_failures = []
-# generate_bike_distribution(G, total_bikes, args.categories, 'wg')
 np.random.seed(args.seed)
 random.seed(args.seed)
 
@@ -142,31 +135,31 @@ elif args.categories == 3:
         pickle.dump(agent_2.q_table, file)
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
         pickle.dump(agent_4.q_table, file)
-elif args.categories == 4:
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
-        pickle.dump(agent_0.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
-        pickle.dump(agent_1.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
-        pickle.dump(agent_3.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
-        pickle.dump(agent_4.q_table, file)
-else:
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
-        pickle.dump(agent_0.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
-        pickle.dump(agent_1.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat2.pkl", "wb") as file:
-        pickle.dump(agent_2.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
-        pickle.dump(agent_3.q_table, file)
-    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
-        pickle.dump(agent_4.q_table, file)
+# elif args.categories == 4:
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
+#         pickle.dump(agent_0.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
+#         pickle.dump(agent_1.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
+#         pickle.dump(agent_3.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
+#         pickle.dump(agent_4.q_table, file)
+# else:
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
+#         pickle.dump(agent_0.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
+#         pickle.dump(agent_1.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat2.pkl", "wb") as file:
+#         pickle.dump(agent_2.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
+#         pickle.dump(agent_3.q_table, file)
+#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
+#         pickle.dump(agent_4.q_table, file)
 
 
 print(f'Finished simulation with seed: {args.seed}, categories: {args.categories} and beta: {args.beta / 10}')
 
 b = 0
-for i in range(100):
+for i in range(num_stations):
     b += G.nodes[i]['bikes']
-print(b)
+np.save(f'results/bikes_{args.categories}_cat_{args.beta / 10}_{args.seed}.npy', b)

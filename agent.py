@@ -3,9 +3,6 @@ import numpy as np
 from av_actions import available_actions
 
 
-# np.random.seed(0)
-
-
 class RebalancingAgent:
     def __init__(self, category, epsilon=1, epsilon_decay=8.25e-7, min_epsilon=0.01):
         self.learning_rate = 0.01
@@ -25,7 +22,7 @@ class RebalancingAgent:
         return self.q_table.get(key, 0)
 
     def update_q_table(self, state, action, reward, next_state):
-        actions = available_actions(next_state, self.category)
+        actions = available_actions(next_state)
 
         max_q_next = max(self.get_q_value(next_state, a) for a in actions)
         q_current = self.get_q_value(state, action)
@@ -50,7 +47,7 @@ class RebalancingAgent:
                     print('----------------------')
 
     def decide_action(self, state):
-        actions = available_actions(state, self.category)
+        actions = available_actions(state)
 
         if random.random() < self.epsilon:
             return random.choice(actions)

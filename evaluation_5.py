@@ -1,4 +1,4 @@
-from environment import FairEnv
+from environment_3 import FairEnv
 from agent import RebalancingAgent
 from network import generate_network, generate_bike_distribution
 from demand import generate_global_demand

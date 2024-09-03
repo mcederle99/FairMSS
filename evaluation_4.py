@@ -1,6 +1,6 @@
-from environment import FairEnv
+from environment_3 import FairEnv
 from agent import RebalancingAgent
-from network import generate_network, generate_bike_distribution
+from network import generate_network
 from demand import generate_global_demand
 import numpy as np
 import random
@@ -9,21 +9,23 @@ import inequalipy as ineq
 
 gini_values_tot = [[], [], [], [], [], [], [], [], [], [], []]
 costs_tot = [[], [], [], [], [], [], [], [], [], [], []]
-bikes_tot = [[], [], [], [], [], [], [], [], [], [], []]
-max_possible_bikes = [[], [], [], [], [], [], [], [], [], [], []]
+
 for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
     index = int(beta * 10)
     for seed in range(11):
         np.random.seed(seed)
         random.seed(seed)
 
-        gamma = 10
+        n_bikes = np.load(f'results/bikes_4_cat_{beta}_{seed}.npy')
+
+        gamma = 20
 
         num_central = 10
         num_subcentral = 20
         num_subremote = 45
         num_remote = 60
-        num_days = 100
+        num_days = 101
+
         time_slots = [(0, 4), (4, 7), (7, 10), (10, 11), (11, 13), (13, 14), (14, 17), (17, 20), (20, 24)]
         demand_params_0 = [(1, 1), (1, 1), (1, 2), (1, 2), (1, 1), (1, 2), (2, 1), (2, 1), (1, 1)]
         demand_params_1 = [(1, 1), (1, 1), (1, 3), (1, 3), (1, 1), (1, 1), (3, 1), (3, 1), (1, 1)]
