@@ -39,26 +39,47 @@ elif args.categories == 3:
     demand_params = [demand_params_0, demand_params_2, demand_params_4]
     node_list = [60, 30, 10]
 
-# elif args.categories == 4:
-#     demand_params = [demand_params_0, demand_params_1, demand_params_3, demand_params_4]
-#     node_list = [60, 45, 20, 10]
+elif args.categories == 4:
+    from environment_4 import FairEnv
+    demand_params_0 = \
+        [(0.3, 2), (1.5, 0.3)]
+    demand_params_1 = \
+        [(0.45, 3), (2.25, 0.45)]
+    demand_params_3 = \
+        [(9.2, 2.4), (4.4, 9.2)]
+    demand_params_4 = \
+        [(13.8, 7), (9, 13.8)]
+    demand_params = [demand_params_0, demand_params_1, demand_params_3, demand_params_4]
+    node_list = [60, 40, 20, 10]
 
-# elif args.categories == 5:
-#     demand_params = [demand_params_0, demand_params_1, demand_params_2, demand_params_3, demand_params_4]
-#     node_list = [60, 45, 30, 20, 10]
+elif args.categories == 5:
+    from environment_5 import FairEnv
+
+    demand_params_0 = \
+        [(0.3, 2), (1.5, 0.3)]
+    demand_params_1 = \
+        [(0.45, 3), (2.25, 0.45)]
+    demand_params_2 = \
+        [(3.3, 1.5), (1.5, 3.3)]
+    demand_params_3 = \
+        [(9.2, 5.1), (6.6, 9.2)]
+    demand_params_4 = \
+        [(13.8, 7), (10, 13.8)]
+    demand_params = [demand_params_0, demand_params_1, demand_params_2, demand_params_3, demand_params_4]
+    node_list = [60, 40, 30, 20, 10]
 
 else:
     raise ValueError("Wrong number of categories. Select among [2, 3, 4, 5]")
 
+agent_0 = RebalancingAgent(0)
+agent_1 = RebalancingAgent(1)
+agent_2 = RebalancingAgent(2)
+agent_3 = RebalancingAgent(3)
+agent_4 = RebalancingAgent(4)
+
 G = generate_network(node_list)
 all_days_demand_vectors, transformed_demand_vectors = generate_global_demand(node_list, num_days,
                                                                              demand_params, time_slots)
-
-agent_0 = RebalancingAgent(0)
-# agent_1 = RebalancingAgent(1)
-agent_2 = RebalancingAgent(2)
-# agent_3 = RebalancingAgent(3)
-agent_4 = RebalancingAgent(4)
 
 num_stations = np.sum(node_list)
 daily_returns = []
@@ -81,12 +102,12 @@ for repeat in range(110):
                 for i in range(num_stations):
                     if G.nodes[i]['station'] == 0:
                         actions[i] = agent_0.decide_action(state[i])
-                    # elif G.nodes[i]['station'] == 1:
-                    #     actions[i] = agent_1.decide_action(state[i])
+                    elif G.nodes[i]['station'] == 1:
+                        actions[i] = agent_1.decide_action(state[i])
                     elif G.nodes[i]['station'] == 2:
                         actions[i] = agent_2.decide_action(state[i])
-                    # elif G.nodes[i]['station'] == 3:
-                    #     actions[i] = agent_3.decide_action(state[i])
+                    elif G.nodes[i]['station'] == 3:
+                        actions[i] = agent_3.decide_action(state[i])
                     else:
                         actions[i] = agent_4.decide_action(state[i])
 
@@ -102,15 +123,15 @@ for repeat in range(110):
                     if G.nodes[i]['station'] == 0 and repeat < 19:
                         agent_0.update_q_table(state[i], actions[i], reward[i], next_state[i])
                         agent_0.update_epsilon()
-                    # elif G.nodes[i]['station'] == 1 and repeat < 14:
-                    #     agent_1.update_q_table(state[i], actions[i], reward[i], next_state[i])
-                    #     agent_1.update_epsilon()
+                    elif G.nodes[i]['station'] == 1 and repeat < 28:
+                        agent_1.update_q_table(state[i], actions[i], reward[i], next_state[i])
+                        agent_1.update_epsilon()
                     elif G.nodes[i]['station'] == 2 and repeat < 37:
                         agent_2.update_q_table(state[i], actions[i], reward[i], next_state[i])
                         agent_2.update_epsilon()
-                    # elif G.nodes[i]['station'] == 3 and repeat < 30:
-                    #     agent_3.update_q_table(state[i], actions[i], reward[i], next_state[i])
-                    #     agent_3.update_epsilon()
+                    elif G.nodes[i]['station'] == 3 and repeat < 55:
+                        agent_3.update_q_table(state[i], actions[i], reward[i], next_state[i])
+                        agent_3.update_epsilon()
                     elif G.nodes[i]['station'] == 4:
                         agent_4.update_q_table(state[i], actions[i], reward[i], next_state[i])
                         agent_4.update_epsilon()
@@ -135,27 +156,26 @@ elif args.categories == 3:
         pickle.dump(agent_2.q_table, file)
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
         pickle.dump(agent_4.q_table, file)
-# elif args.categories == 4:
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
-#         pickle.dump(agent_0.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
-#         pickle.dump(agent_1.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
-#         pickle.dump(agent_3.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
-#         pickle.dump(agent_4.q_table, file)
-# else:
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
-#         pickle.dump(agent_0.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
-#         pickle.dump(agent_1.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat2.pkl", "wb") as file:
-#         pickle.dump(agent_2.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
-#         pickle.dump(agent_3.q_table, file)
-#     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
-#         pickle.dump(agent_4.q_table, file)
-
+elif args.categories == 4:
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
+        pickle.dump(agent_0.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
+        pickle.dump(agent_1.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
+        pickle.dump(agent_3.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
+        pickle.dump(agent_4.q_table, file)
+else:
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
+        pickle.dump(agent_0.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat1.pkl", "wb") as file:
+        pickle.dump(agent_1.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat2.pkl", "wb") as file:
+        pickle.dump(agent_2.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat3.pkl", "wb") as file:
+        pickle.dump(agent_3.q_table, file)
+    with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
+        pickle.dump(agent_4.q_table, file)
 
 print(f'Finished simulation with seed: {args.seed}, categories: {args.categories} and beta: {args.beta / 10}')
 
