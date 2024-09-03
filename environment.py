@@ -15,9 +15,10 @@ class FairEnv:
         self.next_rebalancing_hour = 11
         self.beta = beta
         self.gamma = gamma
+        self.csi = 0.3
 
     def get_state(self):
-        state = np.zeros((self.num_stations, 3), dtype=np.int64)
+        state = np.zeros((self.num_stations, 2), dtype=np.int64)
         failures = [0] * self.num_stations
 
         time = 0 if self.next_rebalancing_hour == 11 else 1
@@ -32,20 +33,24 @@ class FairEnv:
                         n_bikes = 0
                         failures[i] += 1
 
-                if self.G.nodes[i]['station'] == 0 and n_bikes > 15:
-                    self.G.nodes[i]['bikes'] = 15
-                elif self.G.nodes[i]['station'] == 1 and n_bikes > 20:
-                    self.G.nodes[i]['bikes'] = 20
-                elif self.G.nodes[i]['station'] == 2 and n_bikes > 25:
-                    self.G.nodes[i]['bikes'] = 25
-                elif self.G.nodes[i]['station'] == 3 and n_bikes > 40:
-                    self.G.nodes[i]['bikes'] = 40
-                elif self.G.nodes[i]['station'] == 4 and n_bikes > 60:
-                    self.G.nodes[i]['bikes'] = 60
+                if n_bikes > 100:
+                    self.G.nodes[i]['bikes'] = 100
                 else:
                     self.G.nodes[i]['bikes'] = n_bikes
+                # if self.G.nodes[i]['station'] == 0 and n_bikes > 15:
+                #     self.G.nodes[i]['bikes'] = 15
+                # elif self.G.nodes[i]['station'] == 1 and n_bikes > 20:
+                #     self.G.nodes[i]['bikes'] = 20
+                # elif self.G.nodes[i]['station'] == 2 and n_bikes > 25:
+                #     self.G.nodes[i]['bikes'] = 25
+                # elif self.G.nodes[i]['station'] == 3 and n_bikes > 40:
+                #     self.G.nodes[i]['bikes'] = 40
+                # elif self.G.nodes[i]['station'] == 4 and n_bikes > 60:
+                #     self.G.nodes[i]['bikes'] = 60
+                # else:
+                #     self.G.nodes[i]['bikes'] = n_bikes
 
-                state[i] = [self.G.nodes[i]['bikes'], self.G.nodes[i]['station'], time]
+                state[i] = [self.G.nodes[i]['bikes'], time]
 
             self.hour += 1
 
@@ -58,7 +63,7 @@ class FairEnv:
 
         return state, failures
 
-    def compute_reward(self, action, failures):  # reward is a (num_stations, 1) vector
+    def compute_reward(self, action, failures, merda):  # reward is a (num_stations, 1) vector
         rewards = np.zeros(self.num_stations)
 
         for i in range(self.num_stations):
@@ -70,18 +75,55 @@ class FairEnv:
             if self.G.nodes[i]['station'] == 0:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
+                if self.next_rebalancing_hour == 23:
+                    rewards[i] -= self.csi * abs(merda[i] - 22) - 0.4
+                else:
+                    rewards[i] -= self.csi * abs(merda[i] - 2) - 8
+
             elif self.G.nodes[i]['station'] == 1:
                 rewards[i] -= self.beta * 0.5 * failures[i]
                 rewards[i] -= self.gamma * 0.8 * rebalancing_penalty
+
             elif self.G.nodes[i]['station'] == 2:
-                rewards[i] -= self.beta * 0 * failures[i]
+                rewards[i] -= self.beta * 0.4 * failures[i]
                 rewards[i] -= self.gamma * 0.4 * rebalancing_penalty
+                if self.next_rebalancing_hour == 23:
+                    rewards[i] -= self.csi * abs(merda[i] - 3) - 12
+                else:
+                    rewards[i] -= self.csi * abs(merda[i] - 25) - 2
+
             elif self.G.nodes[i]['station'] == 3:
                 rewards[i] -= self.beta * (-0.5) * failures[i]
                 rewards[i] -= self.gamma * 0.3 * rebalancing_penalty
+
             elif self.G.nodes[i]['station'] == 4:
                 rewards[i] -= self.beta * (-1) * failures[i]
                 rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
+                if self.next_rebalancing_hour == 23:
+                    rewards[i] -= self.csi * abs(merda[i] - 5) - 30
+                else:
+                    rewards[i] -= self.csi * abs(merda[i] - 36) - 7
+
+            # if i in (0, 70, 95):
+            #     print(f'Node {i}')
+            #     print(f'Failure term: {failures[i]}')
+            #     if i == 0:
+            #         print(f'Fairness term: {failures[i]}')
+            #         print(f'Cost term: {rebalancing_penalty}')
+            #         if self.next_rebalancing_hour == 23:
+            #             print(f'Bike control term: {abs(self.G.nodes[i]["bikes"] - 1) - 1}')
+            #         else:
+            #             print(f'Bike control term: {abs(self.G.nodes[i]["bikes"] - 3) - 2}')
+            #     elif i == 70:
+            #         print(f'Fairness term: 0')
+            #         print(f'Cost term: {0.4 * rebalancing_penalty}')
+            #         print(f'Bike control term: {abs(self.G.nodes[i]["bikes"] - 5) - 4}')
+            #     else:
+            #         print(f'Fairness term: {- failures[i]}')
+            #         print(f'Cost term: {0.1 * rebalancing_penalty}')
+            #         if self.next_rebalancing_hour == 11:
+            #             print(f'Bike control term: {abs(self.G.nodes[i]["bikes"] - 8) - 2}')
+            #     input("")
 
         return rewards
 
@@ -90,18 +132,20 @@ class FairEnv:
         self.day = 0
         self.next_rebalancing_hour = 11
 
-        state = np.zeros((self.num_stations, 3), dtype=np.int64)
+        state = np.zeros((self.num_stations, 2), dtype=np.int64)
         for i in range(self.num_stations):
-            state[i] = [self.G.nodes[i]['bikes'], self.G.nodes[i]['station'], 0]
+            state[i] = [self.G.nodes[i]['bikes'], 0]
 
         return state
 
     def step(self, action):  # action is a (num_stations, 1) vector
+        merda = np.zeros(self.num_stations, dtype=np.int64)
         for i in range(self.num_stations):
             self.G.nodes[i]['bikes'] += action[i]
+            merda[i] = self.G.nodes[i]['bikes']
 
         state, failures = self.get_state()
 
-        reward = self.compute_reward(action, failures)
+        reward = self.compute_reward(action, failures, merda)
 
         return state, reward, failures

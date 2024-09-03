@@ -6,29 +6,27 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--cat", default=0, type=int)
 args = parser.parse_args()
 
-gini = np.load(f'results/gini_{args.cat}_cat.npy').transpose()
-cost = np.load(f'results/cost_{args.cat}_cat.npy').transpose()
-bikes = np.load(f'results/bikes_{args.cat}_cat.npy')
-max_bikes = np.load(f'results/max_bikes_{args.cat}_cat.npy')
+gini = np.load(f'results/gini_{args.cat}_cat_fixed_alsodemand_10seeds.npy').transpose()
+cost = np.load(f'results/cost_{args.cat}_cat_fixed_alsodemand_10seeds.npy').transpose()
+# bikes = np.load(f'results/bikes_{args.cat}_cat_fixed_alsodemand.npy')
+# max_bikes = np.load(f'results/max_bikes_{args.cat}_cat_fixed_alsodemand.npy')
 
 # TOTAL NUMBER OF BIKES INCREASE
-betas = ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0']
-increment = []
-max_increment = []
-for i in range(11):
-    increment.append(np.mean(bikes[i, :]))
-    max_increment.append(np.mean(max_bikes[i, :]))
-
-plt.figure(figsize=(10, 6))
-plt.scatter(range(1, 12), increment)
-plt.xlabel(r'$\beta$', fontsize=14)
-plt.ylabel('Bike increment wrt day 0 (%)', fontsize=14)
-plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
-plt.grid(axis='y')
-plt.savefig(f"plots/bike_increment_{args.cat}_cat.pdf", format='pdf')
-plt.show()
-print(f'The maximum allowed increment in the total number of bikes was: {max_increment[0]:.2f} %')
-print('')
+# betas = ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0']
+# increment = []
+# max_increment = []
+# for i in range(11):
+#     increment.append(np.mean(bikes[i, :]))
+#     max_increment.append(np.mean(max_bikes[i, :]))
+#
+# plt.figure(figsize=(10, 6))
+# plt.scatter(range(1, 12), increment)
+# plt.xlabel(r'$\beta$', fontsize=14)
+# plt.ylabel('Bike increment wrt day 0 (%)', fontsize=14)
+# plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
+# plt.grid(axis='y')
+# # plt.savefig(f"plots/bike_increment_{args.cat}_cat.pdf", format='pdf')
+# plt.show()
 
 # BOX PLOT BETA VERSUS GINI
 plt.figure(figsize=(10, 6))
@@ -45,7 +43,7 @@ plt.xlabel(r'$\beta$', fontsize=14)
 plt.ylabel('Gini index', fontsize=14)
 plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
 plt.grid(axis='y')
-plt.savefig(f"plots/boxplot_gini_{args.cat}_cat.pdf", format='pdf')
+plt.savefig(f"plots/boxplot_gini_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()
 
 # BOX PLOT BETA VERSUS COSTS
@@ -59,7 +57,7 @@ plt.xlabel(r'$\beta$', fontsize=14)
 plt.ylabel('Daily global cost', fontsize=14)
 plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
 plt.grid(axis='y')
-plt.savefig(f"plots/boxplot_costs_{args.cat}_cat.pdf", format='pdf')
+plt.savefig(f"plots/boxplot_costs_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()
 
 # PARETO FRONT COSTS VERSUS GINI
@@ -103,5 +101,5 @@ for i in range(11):
 plt.ylabel('Average Gini coefficient', fontsize=14)
 plt.xlabel('Average costs', fontsize=14)
 plt.grid(True)
-plt.savefig(f"plots/pareto_costs_gini_{args.cat}_cat.pdf", format='pdf')
+plt.savefig(f"plots/pareto_costs_gini_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()

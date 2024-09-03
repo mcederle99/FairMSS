@@ -1,30 +1,583 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5abdff6-4486-4b69-8d8b-849eeb219d34" name="Changes" comment="" />
+    <list default="true" id="f5abdff6-4486-4b69-8d8b-849eeb219d34" name="Changes" comment="variable number of categories - some fixes - plots">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/av_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/av_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/bike_increment_2_cat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/bike_increment_3_cat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/bike_increment_4_cat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/bike_increment_5_cat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_2_cat (1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_2_cat.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/pareto_costs_gini_2_cat.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_3_cat (1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_3_cat.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/pareto_costs_gini_3_cat.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_4_cat (1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_4_cat.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/pareto_costs_gini_4_cat.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_5_cat (1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pareto_costs_gini_5_cat.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/pareto_costs_gini_5_cat.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.0_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.1_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.2_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.3_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.4_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.5_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.6_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.7_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.8_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_0.9_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_2_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_3_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_4_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_10.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_6.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_7.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_8.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/q_tables/q_table_1.0_5_9.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bikes_2_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bikes_3_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bikes_4_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bikes_5_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/cost_2_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/cost_3_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/cost_4_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/cost_5_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/gini_2_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/gini_3_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/gini_4_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/gini_5_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/max_bikes_2_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/max_bikes_3_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/max_bikes_4_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/max_bikes_5_cat.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training.sh" beforeDir="false" afterPath="$PROJECT_DIR$/training.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mcederle99&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mcederle99/FairRebalancing.git&quot;,
+    &quot;accountId&quot;: &quot;2ca4bfd0-5afa-4f9a-b30b-707cfcb8ad04&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2kzMJmZAO2hRVxBSpDaMxZwavXt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/matteo/Desktop/codice/FairRebalancing&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -41,6 +594,39 @@
       <option name="presentableId" value="Default" />
       <updated>1724281882917</updated>
     </task>
+    <task id="LOCAL-00001" summary="upper bound - new state - modified reward">
+      <option name="closed" value="true" />
+      <created>1724480089360</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724480089360</updated>
+    </task>
+    <task id="LOCAL-00002" summary="variable number of categories - some fixes - plots">
+      <option name="closed" value="true" />
+      <created>1724850176204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724850176204</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="upper bound - new state - modified reward" />
+    <MESSAGE value="variable number of categories - some fixes - plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="variable number of categories - some fixes - plots" />
   </component>
 </project>
