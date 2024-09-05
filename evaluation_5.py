@@ -12,7 +12,7 @@ costs_tot = [[], [], [], [], [], [], [], [], [], [], []]
 
 for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
     index = int(beta * 10)
-    for seed in range(10):
+    for seed in range(10, 20):
         np.random.seed(seed)
         random.seed(seed)
 
@@ -222,5 +222,5 @@ for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
         gini_values_tot[index].append(gini_coefficient)
         costs_tot[index].append(np.mean(daily_global_costs) + n_bikes / 100 + failure_rate_global / 10)
 
-np.save('results/gini_5_cat_fixed_alsodemand.npy', gini_values_tot)
-np.save('results/cost_5_cat_fixed_alsodemand.npy', costs_tot)
+np.save('results/gini_5_cat_fixed_alsodemand_10seedsbis.npy', gini_values_tot)
+np.save('results/cost_5_cat_fixed_alsodemand_10seedsbis.npy', costs_tot)

@@ -6,8 +6,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--cat", default=0, type=int)
 args = parser.parse_args()
 
-gini = np.load(f'results/gini_{args.cat}_cat_fixed_alsodemand.npy').transpose()
-cost = np.load(f'results/cost_{args.cat}_cat_fixed_alsodemand.npy').transpose()
+gini = np.load(f'results/gini_{args.cat}_cat_fixed_alsodemand_10seedsbis.npy').transpose()
+cost = np.load(f'results/cost_{args.cat}_cat_fixed_alsodemand_10seedsbis.npy').transpose()
 # bikes = np.load(f'results/bikes_{args.cat}_cat_fixed_alsodemand.npy')
 # max_bikes = np.load(f'results/max_bikes_{args.cat}_cat_fixed_alsodemand.npy')
 
@@ -43,7 +43,7 @@ plt.xlabel(r'$\beta$', fontsize=14)
 plt.ylabel('Gini index', fontsize=14)
 plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
 plt.grid(axis='y')
-# plt.savefig(f"plots/boxplot_gini_{args.cat}_cat_fixed.pdf", format='pdf')
+plt.savefig(f"plots/boxplot_gini_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()
 
 # BOX PLOT BETA VERSUS COSTS
@@ -57,7 +57,7 @@ plt.xlabel(r'$\beta$', fontsize=14)
 plt.ylabel('Daily global cost', fontsize=14)
 plt.xticks(range(1, 12), ['0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
 plt.grid(axis='y')
-# plt.savefig(f"plots/boxplot_costs_{args.cat}_cat_fixed.pdf", format='pdf')
+plt.savefig(f"plots/boxplot_costs_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()
 
 # PARETO FRONT COSTS VERSUS GINI
@@ -101,5 +101,5 @@ for i in range(11):
 plt.ylabel('Average Gini coefficient', fontsize=14)
 plt.xlabel('Average costs', fontsize=14)
 plt.grid(True)
-# plt.savefig(f"plots/pareto_costs_gini_{args.cat}_cat_fixed.pdf", format='pdf')
+plt.savefig(f"plots/pareto_costs_gini_{args.cat}_cat_fixed.pdf", format='pdf')
 plt.show()
