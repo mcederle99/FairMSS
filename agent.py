@@ -30,22 +30,6 @@ class RebalancingAgent:
         q_new = q_current + self.learning_rate * (reward + self.discount_factor * max_q_next - q_current)
         self.q_table[((state[0], state[1]), action)] = q_new
 
-    def print_q_table(self):
-        already_printed_states = []
-        actions = [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30]
-        for key in self.q_table.keys():
-            values = []
-            for a in actions:
-                values.append(self.q_table.get((key[0], a), -1000))
-            best_action = actions[np.argmax(values)]
-            if best_action < 0:
-                if key[0] not in already_printed_states:
-                    print(f"State-Action: {key[0]} {best_action}")
-                    for a in actions:
-                        print(self.q_table.get((key[0], a), -1000))
-                    already_printed_states.append(key[0])
-                    print('----------------------')
-
     def decide_action(self, state):
         actions = available_actions(state)
 

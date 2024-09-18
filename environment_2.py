@@ -48,7 +48,7 @@ class FairEnv:
 
         return state, failures
 
-    def compute_reward(self, action, failures, merda):  # reward is a (num_stations, 1) vector
+    def compute_reward(self, action, failures, mu):  # reward is a (num_stations, 1) vector
         rewards = np.zeros(self.num_stations)
 
         for i in range(self.num_stations):
@@ -61,17 +61,17 @@ class FairEnv:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(merda[i] - 22) - 0.4
+                    rewards[i] -= self.csi * abs(mu[i] - 22) - 0.4
                 else:
-                    rewards[i] -= self.csi * abs(merda[i] - 2) - 8
+                    rewards[i] -= self.csi * abs(mu[i] - 2) - 8
 
             elif self.G.nodes[i]['station'] == 4:
                 rewards[i] -= self.beta * (-1) * failures[i]
                 rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(merda[i]) - 61
+                    rewards[i] -= self.csi * abs(mu[i]) - 61
                 else:
-                    rewards[i] -= self.csi * abs(merda[i] - 88) - 1
+                    rewards[i] -= self.csi * abs(mu[i] - 88) - 1
 
         return rewards
 
@@ -87,13 +87,13 @@ class FairEnv:
         return state
 
     def step(self, action):  # action is a (num_stations, 1) vector
-        merda = np.zeros(self.num_stations, dtype=np.int64)
+        mu = np.zeros(self.num_stations, dtype=np.int64)
         for i in range(self.num_stations):
             self.G.nodes[i]['bikes'] += action[i]
-            merda[i] = self.G.nodes[i]['bikes']
+            mu[i] = self.G.nodes[i]['bikes']
 
         state, failures = self.get_state()
 
-        reward = self.compute_reward(action, failures, merda)
+        reward = self.compute_reward(action, failures, mu)
 
         return state, reward, failures
