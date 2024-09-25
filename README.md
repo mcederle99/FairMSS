@@ -32,7 +32,16 @@ A case study with synthetic data validates our insights and highlights the impor
    ```
 
 ## Cite this work
-If you find our work interesting for your research, please cite the [paper](). In BibTeX format:
+If you find our work interesting for your research, please cite the [paper](https://arxiv.org/pdf/2403.15780v2). In BibTeX format:
 
 ```bibtex
+@misc{cederle2024fairnessorientedreinforcementlearningapproach,
+      title={A Fairness-Oriented Reinforcement Learning Approach for the Operation and Control of Shared Micromobility Services}, 
+      author={Matteo Cederle and Luca Vittorio Piron and Marina Ceccon and Federico Chiariotti and Alessandro Fabris and Marco Fabris and Gian Antonio Susto},
+      year={2024},
+      eprint={2403.15780},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={https://arxiv.org/abs/2403.15780}, 
+}
 ```
