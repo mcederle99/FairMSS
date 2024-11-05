@@ -5,6 +5,7 @@ import numpy as np
 import random
 import pickle
 import argparse
+import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--beta", default=0, type=float)
@@ -90,11 +91,12 @@ random.seed(args.seed)
 env = FairEnv(G, transformed_demand_vectors, beta, gamma)
 state = env.reset()
 
+start = time.time()
 for repeat in range(110):
     for day in range(num_days):
         ret = 0
         fails = 0
-        for time in (0, 1):
+        for times in (0, 1):
             actions = np.zeros(num_stations, dtype=np.int64)
             if repeat == 0 and day == 0:
                 pass
@@ -144,6 +146,9 @@ for repeat in range(110):
             daily_returns.append(ret)
             daily_failures.append(fails)
 
+end = time.time()
+print(f'Training time: {end - start:.5f}')
+
 if args.categories == 2:
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:
         pickle.dump(agent_0.q_table, file)
@@ -176,6 +181,8 @@ else:
         pickle.dump(agent_3.q_table, file)
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat4.pkl", "wb") as file:
         pickle.dump(agent_4.q_table, file)
+
+np.save(f'results/learning_curve_{args.categories}_cat_{args.beta / 10}_{args.seed}.npy', daily_returns)
 
 print(f'Finished simulation with seed: {args.seed}, categories: {args.categories} and beta: {args.beta / 10}')
 
