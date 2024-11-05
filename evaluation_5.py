@@ -12,6 +12,7 @@ costs_tot = [[], [], [], [], [], [], [], [], [], [], []]
 costs_rebalancing = [[], [], [], [], [], [], [], [], [], [], []]
 costs_failures = [[], [], [], [], [], [], [], [], [], [], []]
 costs_bikes = [[], [], [], [], [], [], [], [], [], [], []]
+initial_bikes = [[], [], [], [], [], [], [], [], [], [], []]
 
 # increment_bikes = [[], [], [], [], [], [], [], [], [], [], []]
 
@@ -177,10 +178,11 @@ for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
 
                 daily_global_costs.append(costs)
 
-            # if day == 0:
-            #     bici_s = 0
-            #     for i in range(num_stations):
-            #         bici_s += G.nodes[i]['bikes']
+            if day == 0:
+                bici_s = 0
+                for i in range(num_stations):
+                    bici_s += G.nodes[i]['bikes']
+                initial_bikes[index].append(bici_s)
 
         # bici_f = 0
         # for i in range(num_stations):
@@ -246,3 +248,4 @@ np.save('results/cost_reb_5_cat_10seeds.npy', costs_rebalancing)
 np.save('results/cost_fail_5_cat_10seeds.npy', costs_failures)
 np.save('results/cost_bikes_5_cat_10seeds.npy', costs_bikes)
 # np.save('results/increment_bikes_5_cat_10seeds.npy', increment_bikes)
+np.save('results/initial_bikes_5_cat_10seeds.npy', initial_bikes)

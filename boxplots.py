@@ -140,10 +140,17 @@ plt.show()
 
 # BIKES COSTS
 
+initial_bikes = np.load(f'results/initial_bikes_{args.cat}_cat_10seeds.npy').transpose()[:, 0]
+mean = np.mean(initial_bikes)
+std_dev = np.std(initial_bikes)
 # Setting a nice aesthetic for the plots
 sns.set(style="whitegrid")
 # Creating a figure and axis with higher resolution
 fig, ax = plt.subplots(figsize=(10, 6), dpi=100)
+# Plot the mean as a horizontal line
+ax.axhline(mean, color='red', linestyle='--', linewidth=2, label="Mean")
+# Plot confidence intervals as shaded areas
+ax.fill_between([0.5, 11.5], mean - std_dev, mean + std_dev, color='red', alpha=0.2)
 # Using a single custom color
 box_color = sns.color_palette("viridis", 11)[2]
 # Creating the boxplot with custom settings
