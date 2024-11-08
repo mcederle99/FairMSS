@@ -61,33 +61,41 @@ class FairEnv:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 22) - 0.4
+                    if abs(mu[i] - 22) > 0.4:
+                        rewards[i] -= self.csi * (abs(mu[i] - 22) - 0.4)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 2) - 8
+                    if abs(mu[i] - 2) > 8:
+                        rewards[i] -= self.csi * (abs(mu[i] - 2) - 8)
 
             elif self.G.nodes[i]['station'] == 1:
                 rewards[i] -= self.beta * 0.5 * failures[i]
                 rewards[i] -= self.gamma * 0.8 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 32) - 0.3
+                    if abs(mu[i] - 32) > 0.3:
+                        rewards[i] -= self.csi * (abs(mu[i] - 32) - 0.3)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 1) - 11
+                    if abs(mu[i] - 1) > 11:
+                        rewards[i] -= self.csi * (abs(mu[i] - 1) - 11)
 
             elif self.G.nodes[i]['station'] == 3:
                 rewards[i] -= self.beta * (-0.5) * failures[i]
                 rewards[i] -= self.gamma * 0.3 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 0.3) - 41
+                    if abs(mu[i] - 0.3) > 41:
+                        rewards[i] -= self.csi * (abs(mu[i] - 0.3) - 41)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 60) - 1
+                    if abs(mu[i] - 60) > 1:
+                        rewards[i] -= self.csi * (abs(mu[i] - 60) - 1)
 
             elif self.G.nodes[i]['station'] == 4:
                 rewards[i] -= self.beta * (-1) * failures[i]
                 rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 2) - 42
+                    if abs(mu[i] - 2) > 42:
+                        rewards[i] -= self.csi * (abs(mu[i] - 2) - 42)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 64) - 3
+                    if abs(mu[i] - 64) > 3:
+                        rewards[i] -= self.csi * (abs(mu[i] - 64) - 3)
 
         return rewards
 

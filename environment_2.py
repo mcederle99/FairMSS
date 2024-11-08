@@ -61,17 +61,21 @@ class FairEnv:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 22) - 0.4
+                    if abs(mu[i] - 22) > 0.4:
+                        rewards[i] -= self.csi * (abs(mu[i] - 22) - 0.4)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 2) - 8
+                    if abs(mu[i] - 2) > 8:
+                        rewards[i] -= self.csi * (abs(mu[i] - 2) - 8)
 
             elif self.G.nodes[i]['station'] == 4:
                 rewards[i] -= self.beta * (-1) * failures[i]
                 rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i]) - 61
+                    if abs(mu[i]) > 61:
+                        rewards[i] -= self.csi * (abs(mu[i]) - 61)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 88) - 1
+                    if abs(mu[i] - 88) > 1:
+                        rewards[i] -= self.csi * (abs(mu[i] - 88) - 1)
 
         return rewards
 

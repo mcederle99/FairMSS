@@ -15,6 +15,7 @@ args = parser.parse_args()
 
 beta = args.beta / 10
 gamma = 20
+file_path = 'training_times.txt'
 
 num_days = 1000
 time_slots =\
@@ -147,7 +148,8 @@ for repeat in range(110):
             daily_failures.append(fails)
 
 end = time.time()
-print(f'Training time: {end - start:.5f}')
+with open(file_path, 'a') as file:
+    file.write(f'{end - start}\n')
 
 if args.categories == 2:
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:

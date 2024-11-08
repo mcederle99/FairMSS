@@ -61,41 +61,51 @@ class FairEnv:
                 rewards[i] -= self.beta * 1 * failures[i]
                 rewards[i] -= self.gamma * 1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 22) - 0.4
+                    if abs(mu[i] - 22) > 0.4:
+                        rewards[i] -= self.csi * (abs(mu[i] - 22) - 0.4)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 2) - 8
+                    if abs(mu[i] - 2) > 8:
+                        rewards[i] -= self.csi * (abs(mu[i] - 2) - 8)
 
             elif self.G.nodes[i]['station'] == 1:
                 rewards[i] -= self.beta * 0.5 * failures[i]
                 rewards[i] -= self.gamma * 0.8 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 32) - 0.3
+                    if abs(mu[i] - 32) > 0.3:
+                        rewards[i] -= self.csi * (abs(mu[i] - 32) - 0.3)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 1) - 11
+                    if abs(mu[i] - 1) > 11:
+                        rewards[i] -= self.csi * (abs(mu[i] - 1) - 11)
 
             elif self.G.nodes[i]['station'] == 2:
                 rewards[i] -= self.beta * 0.4 * failures[i]
                 rewards[i] -= self.gamma * 0.4 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 3) - 12
+                    if abs(mu[i] - 3) > 12:
+                        rewards[i] -= self.csi * (abs(mu[i] - 3) - 12)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 25) - 2
+                    if abs(mu[i] - 25) > 2:
+                        rewards[i] -= self.csi * (abs(mu[i] - 25) - 2)
 
             elif self.G.nodes[i]['station'] == 3:
                 rewards[i] -= self.beta * (-0.5) * failures[i]
                 rewards[i] -= self.gamma * 0.3 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 3) - 26
+                    if abs(mu[i] - 3) > 26:
+                        rewards[i] -= self.csi * (abs(mu[i] - 3) - 26)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 39) - 3
+                    if abs(mu[i] - 39) > 3:
+                        rewards[i] -= self.csi * (abs(mu[i] - 39) - 3)
 
             elif self.G.nodes[i]['station'] == 4:
                 rewards[i] -= self.beta * (-1) * failures[i]
                 rewards[i] -= self.gamma * 0.1 * rebalancing_penalty
                 if self.next_rebalancing_hour == 23:
-                    rewards[i] -= self.csi * abs(mu[i] - 2) - 42
+                    if abs(mu[i] - 2) > 42:
+                        rewards[i] -= self.csi * (abs(mu[i] - 2) - 42)
                 else:
-                    rewards[i] -= self.csi * abs(mu[i] - 54) - 3
+                    if abs(mu[i] - 54) > 3:
+                        rewards[i] -= self.csi * (abs(mu[i] - 54) - 3)
 
         return rewards
 

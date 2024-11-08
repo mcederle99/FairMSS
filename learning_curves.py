@@ -1,30 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Sample data
-data = np.random.randn(100)  # Replace with your own vector of numbers
+# Simulate reward data across different seeds
+# Assume 10 seeds and 100 episodes
+# Replace this with actual reward data from your experiments
+num_seeds = 10
+num_episodes = 100
+rewards = np.random.rand(num_seeds, num_episodes) * 10  # Simulated rewards
 
-# Calculate mean and standard deviation
-mean = np.mean(data)
-std_dev = np.std(data)
+# Calculate the mean and standard deviation across seeds for each episode
+mean_rewards = np.mean(rewards, axis=0)
+std_rewards = np.std(rewards, axis=0)
 
-# Set up the figure
-plt.figure(figsize=(8, 6))
+# Plot the learning curve
+plt.figure(figsize=(10, 6))
+episodes = np.arange(num_episodes)
 
-# Plot data points (optional, to visualize data)
-plt.plot(data, 'o', alpha=0.5, label="Data points")
+# Plot the mean reward
+plt.plot(episodes, mean_rewards, color="blue", label="Mean Reward")
 
-# Plot the mean as a horizontal line
-plt.axhline(mean, color='blue', linestyle='-', linewidth=2, label="Mean")
+# Plot the confidence interval (mean ± std deviation)
+plt.fill_between(episodes, mean_rewards - std_rewards, mean_rewards + std_rewards,
+                 color="blue", alpha=0.2, label="±1 Std Dev")
 
-# Plot confidence intervals as shaded areas
-plt.fill_between(range(len(data)), mean - std_dev, mean + std_dev, color='blue', alpha=0.2, label="±1 Std Dev")
-plt.fill_between(range(len(data)), mean - 2 * std_dev, mean + 2 * std_dev, color='blue', alpha=0.1, label="±2 Std Dev")
-
-# Add labels and legend
-plt.xlabel("Index")
-plt.ylabel("Value")
-plt.title("Mean with Confidence Intervals (Standard Deviations)")
+# Labels and legend
+plt.xlabel("Episode")
+plt.ylabel("Reward")
+plt.title("Learning Curve with Confidence Intervals (Std Dev)")
 plt.legend()
 
 plt.show()
