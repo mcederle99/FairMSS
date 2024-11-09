@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 beta = args.beta / 10
 gamma = 20
-file_path = 'training_times.txt'
+file_path = f'training_times_{args.categories}.txt'
 
 num_days = 1000
 time_slots =\

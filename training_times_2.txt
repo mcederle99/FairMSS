@@ -1,0 +1,1 @@
+Training times for the algorithm with 2 categories:
