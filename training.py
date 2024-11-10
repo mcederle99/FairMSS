@@ -149,7 +149,7 @@ for repeat in range(110):
 
 end = time.time()
 with open(file_path, 'a') as file:
-    file.write(f'{end - start}\n')
+    file.write(f'{end - start},\n')
 
 if args.categories == 2:
     with open(f"q_tables/q_table_{args.beta / 10}_{args.categories}_{args.seed}_cat0.pkl", "wb") as file:

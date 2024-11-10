@@ -196,5 +196,5 @@ for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
         gini_values_tot[index].append(gini_coefficient)
         costs_tot[index].append(np.mean(daily_global_costs) + n_bikes / 100 + failure_rate_global / 10)
 
-np.save('results/gini_4_cat_10seeds_bis.npy', gini_values_tot)
-np.save('results/cost_4_cat_10seeds_bis.npy', costs_tot)
+np.save('results/gini_4_cat_10seeds.npy', gini_values_tot)
+np.save('results/cost_4_cat_10seeds.npy', costs_tot)
