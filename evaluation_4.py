@@ -12,7 +12,7 @@ costs_tot = [[], [], [], [], [], [], [], [], [], [], []]
 
 for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
     index = int(beta * 10)
-    for seed in range(100, 110):
+    for seed in range(10):
         np.random.seed(seed)
         random.seed(seed)
 

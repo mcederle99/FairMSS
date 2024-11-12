@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to reproduce results
-for ((s=100;s<110;s+=1))
+for ((s=0;s<20;s+=1))
 do
   for ((c=2;c<=5;c+=1))
   do
