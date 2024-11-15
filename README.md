@@ -28,7 +28,7 @@ A case study with synthetic data validates our insights and highlights the impor
    ```
    # Here, x must be substituted with the number of categories
    python boxplots.py --cat 5 --save
-   python paretoplots.py --cat x --save
+   python paretoplots_new.py --cat x --save
    ```
 
 ## Cite this work

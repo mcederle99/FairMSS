@@ -8,10 +8,10 @@ parser.add_argument("--cat", default=0, type=int)
 parser.add_argument("--save", action='store_true')
 args = parser.parse_args()
 
-gini = np.load(f'results/gini_{args.cat}_cat_10seeds.npy').transpose()
-cost_reb = np.load(f'results/cost_reb_{args.cat}_cat_10seeds.npy').transpose()
-cost_fail = np.load(f'results/cost_fail_{args.cat}_cat_10seeds.npy').transpose()
-cost_bikes = np.load(f'results/cost_bikes_{args.cat}_cat_10seeds.npy').transpose()
+gini = np.load(f'results/gini_{args.cat}_cat_10seeds_bis.npy').transpose()
+cost_reb = np.load(f'results/cost_reb_{args.cat}_cat_10seeds_bis.npy').transpose()
+cost_fail = np.load(f'results/cost_fail_{args.cat}_cat_10seeds_bis.npy').transpose()
+cost_bikes = np.load(f'results/cost_bikes_{args.cat}_cat_10seeds_bis.npy').transpose()
 beta = ['w', '0.0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0']
 
 # GINI INDEX
@@ -52,8 +52,8 @@ ax.tick_params(axis='y')
 # Show the plot
 plt.tight_layout()
 if args.save:
-    plt.savefig(f"plots/boxplot_gini_{args.cat}_cat.pdf", format='pdf')
-    plt.savefig(f"plots/boxplot_gini_{args.cat}_cat.png", format='png')
+    plt.savefig(f"plots/boxplot_gini_{args.cat}_cat_new.pdf", format='pdf')
+    plt.savefig(f"plots/boxplot_gini_{args.cat}_cat_new.png", format='png')
 plt.show()
 
 # REBALANCING COSTS
@@ -93,8 +93,8 @@ ax.tick_params(axis='y')
 # Show the plot
 plt.tight_layout()
 if args.save:
-    plt.savefig(f"plots/boxplot_costs_reb_{args.cat}_cat.pdf", format='pdf')
-    plt.savefig(f"plots/boxplot_costs_reb_{args.cat}_cat.png", format='png')
+    plt.savefig(f"plots/boxplot_costs_reb_{args.cat}_cat_new.pdf", format='pdf')
+    plt.savefig(f"plots/boxplot_costs_reb_{args.cat}_cat_new.png", format='png')
 plt.show()
 
 # FAILURE COSTS
@@ -134,8 +134,8 @@ ax.tick_params(axis='y')
 # Show the plot
 plt.tight_layout()
 if args.save:
-    plt.savefig(f"plots/boxplot_costs_fails_{args.cat}_cat.pdf", format='pdf')
-    plt.savefig(f"plots/boxplot_costs_fails_{args.cat}_cat.png", format='png')
+    plt.savefig(f"plots/boxplot_costs_fails_{args.cat}_cat_new.pdf", format='pdf')
+    plt.savefig(f"plots/boxplot_costs_fails_{args.cat}_cat_new.png", format='png')
 plt.show()
 
 # BIKES COSTS
@@ -182,6 +182,6 @@ ax.tick_params(axis='y')
 # Show the plot
 plt.tight_layout()
 if args.save:
-    plt.savefig(f"plots/boxplot_costs_bikes_{args.cat}_cat.pdf", format='pdf')
-    plt.savefig(f"plots/boxplot_costs_bikes_{args.cat}_cat.png", format='png')
+    plt.savefig(f"plots/boxplot_costs_bikes_{args.cat}_cat_new.pdf", format='pdf')
+    plt.savefig(f"plots/boxplot_costs_bikes_{args.cat}_cat_new.png", format='png')
 plt.show()
