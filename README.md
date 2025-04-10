@@ -1,6 +1,7 @@
 # A Fairness-Oriented Reinforcement Learning Approach for the Operation and Control of Shared Micromobility Services
 ## Matteo Cederle, Luca Vittorio Piron, Marina Ceccon, Federico Chiariotti, Alessandro Fabris, Marco Fabris, and Gian Antonio Susto
 #### Department of Information Engineering, University of Padova, 35131 Padua via Gradenigo 6/B, Italy
+#### Paper accepted to ACC 2025
 
 ![](amco.png)
 

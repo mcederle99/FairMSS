@@ -9,6 +9,12 @@ import inequalipy as ineq
 
 gini_values_tot = [[], [], [], [], [], [], [], [], [], [], []]
 costs_tot = [[], [], [], [], [], [], [], [], [], [], []]
+costs_rebalancing = [[], [], [], [], [], [], [], [], [], [], []]
+costs_failures = [[], [], [], [], [], [], [], [], [], [], []]
+costs_bikes = [[], [], [], [], [], [], [], [], [], [], []]
+initial_bikes = [[], [], [], [], [], [], [], [], [], [], []]
+
+# increment_bikes = [[], [], [], [], [], [], [], [], [], [], []]
 
 for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
     index = int(beta * 10)
@@ -134,6 +140,17 @@ for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
 
                 daily_global_costs.append(costs)
 
+            if day == 0:
+                bici_s = 0
+                for i in range(num_stations):
+                    bici_s += G.nodes[i]['bikes']
+                initial_bikes[index].append(bici_s)
+
+        # bici_f = 0
+        # for i in range(num_stations):
+        #     bici_f += G.nodes[i]['bikes']
+        # increment_bikes[index].append((bici_f - bici_s)/bici_s*100)
+
         central_requests = 0
         per_requests = 0
         rem_requests = 0
@@ -168,6 +185,14 @@ for beta in (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
         gini_coefficient = np.round(ineq.gini([failure_rate_central, failure_rate_per, failure_rate_rem]), 3)
         gini_values_tot[index].append(gini_coefficient)
         costs_tot[index].append(np.mean(daily_global_costs) + n_bikes / 100 + failure_rate_global / 10)
+        costs_rebalancing[index].append(np.mean(daily_global_costs))
+        costs_failures[index].append(failure_rate_global)
+        costs_bikes[index].append(n_bikes)
 
-np.save('results/gini_3_cat_10seeds_bis.npy', gini_values_tot)
-np.save('results/cost_3_cat_10seeds_bis.npy', costs_tot)
+# np.save('results/gini_3_cat_10seeds_bis.npy', gini_values_tot)
+# np.save('results/cost_3_cat_10seeds_bis.npy', costs_tot)
+np.save('results/cost_reb_3_cat_10seeds_bis.npy', costs_rebalancing)
+np.save('results/cost_fail_3_cat_10seeds_bis.npy', costs_failures)
+np.save('results/cost_bikes_3_cat_10seeds_bis.npy', costs_bikes)
+# np.save('results/increment_bikes_3_cat_10seeds.npy', increment_bikes)
+np.save('results/initial_bikes_3_cat_10seeds_bis.npy', initial_bikes)

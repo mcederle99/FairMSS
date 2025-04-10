@@ -140,7 +140,7 @@ plt.show()
 
 # BIKES COSTS
 
-initial_bikes = np.load(f'results/initial_bikes_{args.cat}_cat_10seeds.npy').transpose()[:, 0]
+initial_bikes = np.load(f'results/initial_bikes_{args.cat}_cat_10seeds_bis.npy').transpose()[:, 0]
 mean = np.mean(initial_bikes)
 std_dev = np.std(initial_bikes)
 # Setting a nice aesthetic for the plots

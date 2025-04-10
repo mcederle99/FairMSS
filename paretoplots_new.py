@@ -126,9 +126,9 @@ if args.cat == 2:
     red_patch = mpatches.Patch(color='red', label='Non-Pareto solutions')
     ax.legend(handles=[blue_patch, red_patch], fontsize=26, loc='lower left', framealpha=0.4)
 
-ax.set_ylabel('Gini index', fontsize=36)
-ax.set_xlabel('Global service cost', fontsize=36)
-ax.tick_params(labelsize=34)
+ax.set_ylabel('Gini index', fontsize=26)
+ax.set_xlabel('Global service cost', fontsize=26)
+ax.tick_params(labelsize=26)
 ax.grid(True, which='major', linestyle=':', linewidth=1, color='grey', alpha=0.7)
 # Show the plot
 plt.tight_layout()
